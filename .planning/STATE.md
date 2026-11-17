@@ -1,7 +1,7 @@
 # Project State: QR Menu Service
 
 ## Current Status
-- **Active Checkpoint:** Checkpoint 2E (Final QA, Product Audit & Sales Readiness Review)
+- **Active Checkpoint:** Checkpoint 2F (Client Delivery, Onboarding & Service Launch Readiness)
 - **Status:** COMPLETED & VERIFIED
 - **Last Updated:** 2026-11-17
 
@@ -11,13 +11,15 @@
 - **Checkpoint 2B:** Menu Interface & Bilingual Display — COMPLETED & VERIFIED (Commit `654e5ee`).
 - **Checkpoint 2C:** Cart, Quantity Management & WhatsApp Ordering — COMPLETED & VERIFIED (Commit `ddedf0b`).
 - **Checkpoint 2D:** QR Code Generation, Free Hosting & Live Deployment — COMPLETED & VERIFIED (Commit `4b70e67` & `41e6b82`).
-- **Checkpoint 2E:** Final QA, Product Audit & Sales Readiness Review — COMPLETED & VERIFIED.
-  - [x] Ran automated verification across all test suites (40 unit/regression checks + 15 QR checks + 21 production live acceptance checks = 76 checks passed).
-  - [x] Conducted network and console audit on live deployment: zero console errors, zero uncaught exceptions, zero broken scripts.
-  - [x] Resolved browser favicon 404 via inline SVG brand icon (`🌿`) in `index.html`.
-  - [x] Verified accessibility: 100% buttons labeled, explicit aria-modal on dialogs, keyboard Tab/Escape usability.
-  - [x] Inspected 11 responsive screenshots across mobile (375px), tablet (768px), and desktop (1280px) in both English and Hindi.
-  - [x] Compiled commercial delivery workflow, client onboarding checklist, and operational risk mitigations.
+- **Checkpoint 2E:** Final QA, Product Audit & Sales Readiness Review — COMPLETED & VERIFIED (Commit `eddbc38` & `13683c5`).
+- **Checkpoint 2F:** Client Delivery, Onboarding & Service Launch Readiness — COMPLETED & VERIFIED.
+  - [x] Authored Client Intake & Onboarding Guide (`docs/CLIENT-ONBOARDING.md`) with owner sign-off specifications.
+  - [x] Authored Repeatable 10-Step Technical Delivery Checklist (`docs/DELIVERY-CHECKLIST.md`).
+  - [x] Authored Client Handover & Operational Manual (`docs/CLIENT-HANDOVER.md`).
+  - [x] Authored Service Scope & Commercial Boundaries (`docs/SERVICE-SPECIFICATION.md`).
+  - [x] Verified quality, legal, and operational accuracy (FSSAI context, WhatsApp URI mechanics, zero PII).
+  - [x] Maintained strict scope boundaries (zero backend, zero payment gateways, zero auth).
+  - [x] Preserved the live Spice Street demo untouched.
 - **Checkpoint 3:** Multi-Table Provisioning & Dynamic Parameters — NOT STARTED (Strict boundary enforced).
 
 ## Key Decisions & Architectural Guardrails

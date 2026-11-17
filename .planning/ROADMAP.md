@@ -52,12 +52,20 @@ A lightweight, fast, mobile-first QR code digital menu and ordering service tail
 - [x] Live production acceptance testing in real Chrome (Desktop & Mobile) with 0 errors
 - [x] Final verification, screenshots, and Git commit
 
-### Checkpoint 2E: Final QA, Product Audit & Sales Readiness Review (CURRENT FOCUS)
+### Checkpoint 2E: Final QA, Product Audit & Sales Readiness Review
 - [x] Comprehensive functional, visual, and network audit of live production deployment
 - [x] Accessibility (ARIA, focus order, high contrast) and mobile/tablet/desktop visual verification
 - [x] Client-readiness assessment (intake requirements, WhatsApp setup, print guidelines)
 - [x] Commercial service viability review (delivery workflow, customization checklist, operational risks)
 - [x] Scope boundary enforcement (zero backend, zero payment gateways, zero auth)
+
+### Checkpoint 2F: Client Delivery, Onboarding & Service Launch Readiness (CURRENT FOCUS)
+- [x] Client Intake & Onboarding Guide (`docs/CLIENT-ONBOARDING.md`)
+- [x] Repeatable 10-Step Technical Delivery Checklist (`docs/DELIVERY-CHECKLIST.md`)
+- [x] Client Handover & Operational Manual (`docs/CLIENT-HANDOVER.md`)
+- [x] Commercial Service Scope & Operational Boundaries (`docs/SERVICE-SPECIFICATION.md`)
+- [x] Quality, legal, and platform accuracy verification
+- [x] Full Git documentation commit and synchronization
 
 ### Checkpoint 3: Multi-Table Provisioning & Dynamic Parameters (FUTURE)
 - [ ] Dynamic URL parameter parsing for table identification (`?table=12`)

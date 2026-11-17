@@ -1,7 +1,7 @@
 # System Specification: QR Menu Service
 
 ## 1. Overview
-The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digital menu and ordering experience for Indian casual and fine-casual restaurants. Checkpoint 2B delivered the bilingual menu interface and browsing system. Checkpoint 2C delivered the in-browser cart system, quantity controls, and WhatsApp click-to-chat order generation. Checkpoint 2D delivered free static hosting on GitHub Pages, live public deployment, high-resolution branded QR code generation, owner download capabilities, and programmatic QR decoding verification. **Checkpoint 2E** delivers the comprehensive product quality assurance, accessibility validation, client-readiness audit, and commercial sales-readiness framework.
+The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digital menu and ordering experience for Indian casual and fine-casual restaurants. Checkpoint 2B delivered the bilingual menu interface and browsing system. Checkpoint 2C delivered the in-browser cart system, quantity controls, and WhatsApp click-to-chat order generation. Checkpoint 2D delivered free static hosting on GitHub Pages, live public deployment, high-resolution branded QR code generation, owner download capabilities, and programmatic QR decoding verification. Checkpoint 2E delivered comprehensive QA, visual verification, and sales readiness. **Checkpoint 2F** delivers complete client onboarding, repeatable delivery checklists, handover guides, and commercial boundary documentation.
 
 ---
 
@@ -52,47 +52,36 @@ The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digita
 
 ---
 
-## 6. Checkpoint 2E Quality & Client-Readiness Framework (Current)
-
-### 6.1 Quality Assurance Standards
-- **Network Health:** Zero broken local asset links; all scripts, fonts, and images return HTTP 200.
-- **Console Integrity:** Zero browser runtime exceptions and zero console errors across all viewports.
-- **Accessibility (WCAG 2.1 AA Target):**
-  - All interactive buttons declare accessible names via text content or `aria-label`.
-  - Input fields declare explicit `placeholder` and `aria-label`.
-  - Modals implement `role="dialog"`, `aria-modal="true"`, and `aria-labelledby`.
-  - State changes reflect via `aria-pressed` and `aria-hidden` attributes.
-  - Active keyboard navigation supported via standard Tab order and Escape key dismissal.
-- **Responsive Geometry:**
-  - Mobile (375 × 812 px): Compact single-column card feed, sticky search/filter bar, fixed bottom cart bar, full-screen slide-up drawer.
-  - Tablet (768 × 1024 px): 2-column card grid, floating cart bar, right-hand slide-out drawer.
-  - Desktop (1280 × 800+ px): 2-3 column card grid, floating cart pill, right-hand panel drawer.
-
-### 6.2 Client Onboarding Specification
-To deliver this product to a real restaurant client, the following configuration data is required:
-1. **Business Profile:**
-   - Legal/Trade Name in English and Regional Language (e.g. Hindi, Tamil, Telugu, Marathi).
-   - Address, Landmarking, Operating Hours, Establishment Type (Dine-in, Cloud Kitchen, QSR).
-   - FSSAI Registration / License Number.
-2. **Catalog Specification:**
-   - Categories list with icons.
-   - Menu items: Item ID, bilingual titles, bilingual descriptions, price in INR, dietary classification (Pure Veg vs Non-Veg), availability status, and tags (e.g. Chef Special, Spicy, Gluten-Free).
-3. **Ordering Setup:**
-   - Dedicated WhatsApp Business phone number monitored at the cashier/billing station during operational hours.
-4. **Branding Assets:**
-   - Brand color codes (primary hex, accent hex).
-   - High-res restaurant logo (vector SVG or transparent PNG).
-5. **Physical Print Handover:**
-   - Recommended 4" × 6" or 5" × 7" acrylic table tent stands.
-   - Matte or anti-glare lamination to avoid glare from ambient restaurant lights.
+## 6. Checkpoint 2E Quality & Client-Readiness Framework (Completed)
+- Automated verification passing 76/76 checks with 0 console errors and 0 uncaught exceptions.
+- Network health audit confirming 100% of core assets load with HTTP 200.
+- Resolved browser favicon 404 via inline SVG brand icon (`🌿`).
+- Accessibility validation (100% button labeling, modal ARIA compliance).
+- Visual QA of 11 responsive screenshots across mobile (375px), tablet (768px), and desktop (1280px).
 
 ---
 
-## 7. Strict Out-of-Scope Boundaries (Prohibited for 2E)
+## 7. Checkpoint 2F Delivery & Service Launch Specification (Current)
+
+### 7.1 Documentation Deliverables
+The project provides four comprehensive, production-grade operational documents:
+1. **Client Intake & Onboarding Guide (`docs/CLIENT-ONBOARDING.md`):** Complete structured form for collecting business identity, menu catalog, verified WhatsApp line, branding tokens, and print tent card counts. Includes an explicit Owner Sign-Off section for prices, taxes, and phone reception.
+2. **Repeatable 10-Step Delivery Checklist (`docs/DELIVERY-CHECKLIST.md`):** Step-by-step technical and operational delivery pipeline from intake review, configuration, testing, QR generation, deployment, scan verification, to physical handover.
+3. **Client Handover & Operational Manual (`docs/CLIENT-HANDOVER.md`):** Practical handbook for restaurant management and floor staff covering how WhatsApp orders arrive, why manual confirmation is essential, how to update prices or mark items sold-out, domain/hosting ownership, number changes, and service exclusions.
+4. **Service Scope & Operational Boundaries (`docs/SERVICE-SPECIFICATION.md`):** Commercial boundary definition outlining standard delivery scope, client-side architectural model, maintenance options, third-party platform dependencies, and strict system boundaries.
+
+### 7.2 Technical & Legal Accuracy Standards
+- **FSSAI Compliance:** Factual and contextual. Notes that FSSAI display requirements apply in India where mandated by local regulations; not claimed as universal across all jurisdictions.
+- **WhatsApp Click-to-Chat Security:** Accurately states that the web link triggers an official HTTPS `https://wa.me/` URI opening the customer's WhatsApp application; the customer manually sends the pre-filled message, which WhatsApp then transmits through its own messaging protocol.
+- **Physical QR Scan Protocol:** Explicitly defines on-site physical scan testing with physical camera devices under actual dining room ambient lighting as a required delivery step.
+- **Demo Phone Number Isolation:** Fictional demo number (`+91 98765 43210`) clearly documented as a demonstration placeholder, replaced per client during Step 5 of delivery.
+
+---
+
+## 8. Strict Out-of-Scope Boundaries (Prohibited for 2F)
 - Backend or server-side database.
 - User authentication or password logins.
 - Payment gateway integrations (Razorpay, Stripe, etc.).
 - Admin backend dashboard.
 - Automated WhatsApp messaging / bots.
 - Multi-restaurant provisioning.
-- Any Checkpoint 2F features.
