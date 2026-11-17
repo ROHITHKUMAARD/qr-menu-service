@@ -13,7 +13,7 @@ The QR Menu Service is a lightweight, mobile-first static web application engine
 2. **Bilingual Display Engine:** Full reactive language toggle (English and regional language, e.g., Hindi) with authentic typographic ligatures via Google Fonts.
 3. **Structured Menu Catalog:** Category tab navigation, item cards, price display in INR, descriptions, and FSSAI-style dietary indicators (Pure Veg green circle vs. Non-Veg red triangle).
 4. **Instant Search & Filter:** Client-side zero-latency text search across dish names, ingredients, and tags, alongside instant dietary filtering.
-5. **Client-Side Cart:** In-memory and `localStorage`-backed cart supporting quantity steppers, item removal, sold-out item protection, and tax-inclusive subtotal/grand total calculations.
+5. **Client-Side Cart:** In-memory and `localStorage`-backed cart supporting quantity steppers, item removal, sold-out item protection, and item total (subtotal) and grand total calculations based on tax-inclusive menu pricing (the application does not calculate separate tax lines or apply configurable tax rates).
 6. **WhatsApp Click-to-Chat Generation:** Programmatic construction of structured, itemized order messages conforming to the official `https://wa.me/` standard format.
 7. **High-Resolution QR Asset Suite:** Standalone vector and 300 DPI raster QR assets, plus complete table tent card print collateral.
 
@@ -37,8 +37,8 @@ The standard setup and onboarding service includes:
 
 Ongoing maintenance may optionally be retained by the restaurant for operational support:
 
-- **Menu Updates:** Periodic price changes, dish description revisions, or adding seasonal items.
-- **Availability Management:** Quick toggling of out-of-stock items (`isAvailable: false`).
+- **Menu Updates:** Periodic price changes, dish description revisions, or adding seasonal items (active once committed, deployed, and propagated by the host).
+- **Availability Management:** Quick toggling of out-of-stock items (`isAvailable: false`), taking effect after deployment and platform propagation (propagation time varies by hosting provider and local client cache).
 - **Domain Renewal Management:** DNS monitoring if the client elects to map a custom domain (e.g., `menu.restaurant.com`).
 - **Holiday & Festive Notices:** Updating promotional banners or special festival timing.
 

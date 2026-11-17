@@ -87,7 +87,7 @@ This checklist outlines the exact, repeatable 10-step technical and operational 
 - [ ] Commit client configuration changes to Git with a descriptive commit message.
 - [ ] Push changes to the remote repository.
 - [ ] Verify hosting build pipeline completes (e.g., GitHub Pages status `built`).
-- [ ] Access the live URL in a web browser to confirm HTTP 200 response and correct client branding.
+- [ ] Access the live URL in a web browser to confirm HTTP 200 response and correct client branding (changes become accessible once the hosting platform build succeeds and CDN edge propagation completes; timing depends on the hosting platform and local network cache).
 
 ### Step 9: Decoding and Physically Testing the QR Code
 - [ ] **Programmatic Decode:** Run the automated decoding verification:

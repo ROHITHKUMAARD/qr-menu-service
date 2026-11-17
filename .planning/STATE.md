@@ -17,6 +17,7 @@
   - [x] Authored Repeatable 10-Step Technical Delivery Checklist (`docs/DELIVERY-CHECKLIST.md`).
   - [x] Authored Client Handover & Operational Manual (`docs/CLIENT-HANDOVER.md`).
   - [x] Authored Service Scope & Commercial Boundaries (`docs/SERVICE-SPECIFICATION.md`).
+  - [x] Corrected documentation accuracy: removed fixed deployment timing claims ("30 seconds") in favor of committed/deployed/propagated explanation, and clarified tax-inclusive pricing model (no separate tax computation).
   - [x] Verified quality, legal, and operational accuracy (FSSAI context, WhatsApp URI mechanics, zero PII).
   - [x] Maintained strict scope boundaries (zero backend, zero payment gateways, zero auth).
   - [x] Preserved the live Spice Street demo untouched.
