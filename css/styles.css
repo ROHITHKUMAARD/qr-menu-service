@@ -1,0 +1,855 @@
+/**
+ * Spice Street — Stylesheet (Checkpoint 2B)
+ * Design Tokens: Warm cream, Deep Forest Green, Muted Orange
+ * Typography: Noto Sans & Noto Sans Devanagari
+ * Mobile-first responsive layout (Mobile, Tablet, Desktop)
+ */
+
+/* ==========================================================================
+   1. Design Tokens & Root Variables
+   ========================================================================== */
+:root {
+  /* Color Palette */
+  --bg-page: #FAF8F5;          /* Warm white / cream background */
+  --bg-surface: #FFFFFF;       /* Crisp white for cards */
+  --bg-subtle: #F3EFEA;        /* Slightly darker cream for banners / chips */
+  --bg-active: #EAE3D9;
+
+  --primary: #183B2B;          /* Deep Forest Green */
+  --primary-hover: #122C20;
+  --primary-light: #23523D;
+  --primary-surface: #EDF3F0;  /* Very soft tint of green */
+
+  --accent: #D97724;           /* Muted warm orange */
+  --accent-hover: #BF651B;
+  --accent-surface: #FEF3EB;   /* Soft warm orange tint */
+
+  /* Text & Neutral Colors */
+  --text-main: #1D231F;        /* Deep charcoal */
+  --text-secondary: #525C56;   /* Subtle slate-charcoal */
+  --text-muted: #828E86;       /* Neutral muted text */
+  --text-inverted: #FFFFFF;
+
+  /* Borders & Dividers */
+  --border-subtle: #E8E2D8;
+  --border-strong: #D5CDC0;
+
+  /* Dietary Indicators */
+  --veg-color: #15803D;        /* Clean green for veg badge */
+  --veg-bg: #DCFCE7;
+  --non-veg-color: #B91C1C;    /* Deep red for non-veg badge */
+  --non-veg-bg: #FEE2E2;
+
+  /* Availability */
+  --sold-out-bg: #F1F0ED;
+  --sold-out-text: #78716C;
+  --sold-out-badge: #EF4444;
+
+  /* Typography */
+  --font-family-base: "Noto Sans", "Noto Sans Devanagari", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-devanagari: "Noto Sans Devanagari", "Noto Sans", system-ui, sans-serif;
+
+  /* Layout & Spacing */
+  --container-max-width: 1140px;
+  --header-padding: 1.25rem;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(24, 59, 43, 0.05);
+  --shadow-md: 0 4px 12px rgba(24, 59, 43, 0.06);
+  --shadow-card: 0 2px 8px rgba(24, 59, 43, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* ==========================================================================
+   2. Base & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure proper shaping and line heights for Hindi text */
+[lang="hi"], .lang-hi {
+  font-family: var(--font-family-devanagari);
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+input {
+  font-family: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   3. Header & Restaurant Information
+   ========================================================================== */
+.site-header {
+  background-color: var(--primary);
+  color: var(--text-inverted);
+  border-bottom: 3px solid var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .header-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-symbol {
+  font-size: 2.25rem;
+  background: rgba(255, 255, 255, 0.12);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+.brand-subtitle {
+  font-size: 0.88rem;
+  color: #E2E8E4;
+  font-weight: 400;
+  margin-top: 0.15rem;
+}
+
+/* Language Switcher */
+.lang-switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  align-self: flex-start;
+}
+
+@media (min-width: 640px) {
+  .lang-switch-wrapper {
+    align-self: center;
+  }
+}
+
+.lang-switch-label {
+  font-size: 0.82rem;
+  color: #C0CDC6;
+  font-weight: 500;
+}
+
+.lang-toggle-group {
+  display: inline-flex;
+  background-color: rgba(0, 0, 0, 0.28);
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #D3E0D8;
+  transition: all var(--transition-fast);
+}
+
+.lang-btn:hover {
+  color: #FFFFFF;
+}
+
+.lang-btn.active {
+  background-color: var(--accent);
+  color: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.lang-code {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+/* Restaurant Meta Banner */
+.restaurant-meta-banner {
+  background-color: #122E21;
+  padding: 0.75rem 0;
+  font-size: 0.82rem;
+  color: #CBD8D0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.meta-items-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.meta-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.pill-badge {
+  background-color: rgba(217, 119, 36, 0.2);
+  color: #FED7AA;
+  border: 1px solid rgba(217, 119, 36, 0.4);
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   4. Sticky Controls & Category Navigation Bar
+   ========================================================================== */
+.controls-sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(250, 248, 245, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-top: 0.75rem;
+  padding-bottom: 0.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.search-filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .search-filter-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Search Box */
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .search-box {
+    max-width: 420px;
+  }
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.85rem;
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.65rem 2.2rem 0.65rem 2.5rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  color: var(--text-main);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(24, 59, 43, 0.12);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 0.75rem;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: background var(--transition-fast);
+}
+
+.clear-search-btn:hover {
+  background: var(--border-strong);
+  color: var(--text-main);
+}
+
+/* Dietary Filter Chips */
+.dietary-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.filter-chip:hover {
+  border-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.filter-chip.active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-inverted);
+}
+
+/* Veg / Non-Veg Indicator Dots on Filter Chips */
+.diet-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.veg-dot {
+  background-color: var(--veg-color);
+  box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 2px var(--veg-color);
+}
+
+.non-veg-dot {
+  background-color: var(--non-veg-color);
+  box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 2px var(--non-veg-color);
+}
+
+.filter-chip.active .veg-dot,
+.filter-chip.active .non-veg-dot {
+  box-shadow: 0 0 0 1px var(--primary), 0 0 0 2px #FFFFFF;
+}
+
+/* Category Navigation Scrollable Bar */
+.category-nav-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.35rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.category-nav-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.category-nav-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--border-strong);
+  border-radius: 4px;
+}
+
+.category-pills-list {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cat-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.cat-pill-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-main);
+  background-color: #FFFDF9;
+}
+
+.cat-pill-btn.active {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(217, 119, 36, 0.25);
+}
+
+.cat-pill-icon {
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   5. Main Menu Content & Results Header
+   ========================================================================== */
+.main-content {
+  padding-top: 1.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+}
+
+.menu-heading {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+.results-count {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Category Sections */
+.category-section {
+  margin-bottom: 2.25rem;
+}
+
+.category-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed var(--border-strong);
+}
+
+.category-section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-section-count {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-surface);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+}
+
+/* ==========================================================================
+   6. Menu Cards & Responsive Grid
+   ========================================================================== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.15rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 generous columns on desktop for menu card readability */
+    gap: 1.25rem;
+  }
+}
+
+.menu-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.2rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+/* Sold Out / Unavailable Treatment */
+.menu-card.is-unavailable {
+  background-color: var(--sold-out-bg);
+  opacity: 0.78;
+}
+
+.menu-card.is-unavailable:hover {
+  transform: none;
+}
+
+.menu-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.menu-card-identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+/* FSSAI Standard Veg / Non-Veg Badges */
+.diet-badge-fssai {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.diet-badge-fssai.veg {
+  border: 2px solid var(--veg-color);
+  background-color: #FFFFFF;
+}
+
+.diet-badge-fssai.veg .symbol-shape {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--veg-color);
+}
+
+.diet-badge-fssai.non-veg {
+  border: 2px solid var(--non-veg-color);
+  background-color: #FFFFFF;
+}
+
+.diet-badge-fssai.non-veg .symbol-shape {
+  width: 0;
+  height: 0;
+  border-left: 4.5px solid transparent;
+  border-right: 4.5px solid transparent;
+  border-bottom: 8px solid var(--non-veg-color);
+}
+
+/* Titles and Pricing */
+.dish-header-texts {
+  flex: 1;
+}
+
+.dish-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.dish-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 0.1rem;
+}
+
+.dish-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+  font-feature-settings: "tnum";
+}
+
+/* Description */
+.dish-description {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-top: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+/* Card Bottom Metadata: Tags and Availability */
+.menu-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dish-tags-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.dish-tag {
+  background-color: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Availability Pill */
+.availability-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+
+.availability-indicator.available {
+  background-color: var(--primary-surface);
+  color: var(--primary);
+}
+
+.availability-indicator.available::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
+.availability-indicator.sold-out {
+  background-color: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid rgba(185, 28, 28, 0.2);
+}
+
+.availability-indicator.sold-out::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #B91C1C;
+}
+
+/* ==========================================================================
+   7. Empty Search / Filter State
+   ========================================================================== */
+.empty-state {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  margin-top: 1.5rem;
+}
+
+.empty-state-icon {
+  font-size: 2.75rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.7;
+}
+
+.empty-state-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.35rem;
+}
+
+.empty-state-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  max-width: 360px;
+  margin: 0 auto 1.25rem;
+}
+
+.btn-reset {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  background-color: var(--primary);
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-fast);
+}
+
+.btn-reset:hover {
+  background-color: var(--primary-light);
+}
+
+/* ==========================================================================
+   8. Footer
+   ========================================================================== */
+.site-footer {
+  background-color: var(--bg-subtle);
+  border-top: 1px solid var(--border-subtle);
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-note {
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.footer-copy {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+/* ==========================================================================
+   9. Accessibility & Motion Restraint
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
