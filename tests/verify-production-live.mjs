@@ -156,10 +156,10 @@ async function runLiveAcceptance() {
     assert(restaurantTitle === 'Spice Street', `Restaurant title renders correctly as 'Spice Street'`);
 
     console.log('\n--- 2. Production Dataset & Category Audits ---');
-    const dishCardsCount = await evaluate('document.querySelectorAll(".dish-card").length');
+    const dishCardsCount = await evaluate('document.querySelectorAll(".menu-card").length');
     assert(dishCardsCount === 25, `Live menu displays exactly 25 dishes (found: ${dishCardsCount})`);
 
-    const categoriesCount = await evaluate('document.querySelectorAll(".category-pill").length');
+    const categoriesCount = await evaluate('document.querySelectorAll(".cat-pill-btn").length');
     assert(categoriesCount === 8, `Category navigation has 'All Items' + 7 categories (found: ${categoriesCount})`);
 
     console.log('\n--- 3. Language Switching (English ⇋ Hindi) ---');
@@ -181,24 +181,24 @@ async function runLiveAcceptance() {
     // Veg Filter
     await evaluate('document.getElementById("filter-diet-veg").click()');
     await sleep(300);
-    const vegCount = await evaluate('document.querySelectorAll(".dish-card").length');
-    assert(vegCount > 0 && vegCount < 25, `Veg filter narrows menu count (found: ${vegCount} veg items)`);
+    const vegCount = await evaluate('document.querySelectorAll(".menu-card").length');
+    assert(vegCount === 18, `Veg filter narrows menu count to 18 veg dishes (found: ${vegCount})`);
 
     // Reset Filter
     await evaluate('document.getElementById("filter-diet-all").click()');
     await sleep(300);
-    const resetCount = await evaluate('document.querySelectorAll(".dish-card").length');
+    const resetCount = await evaluate('document.querySelectorAll(".menu-card").length');
     assert(resetCount === 25, `Resetting filter restores all 25 items`);
 
     // Search
     await evaluate(`
-      const search = document.getElementById("search-input");
-      search.value = "biryani";
+      const search = document.getElementById("menu-search-input");
+      search.value = "Biryani";
       search.dispatchEvent(new Event("input", { bubbles: true }));
     `);
     await sleep(300);
-    const searchCount = await evaluate('document.querySelectorAll(".dish-card").length');
-    assert(searchCount === 3, `Search for 'biryani' displays exact 3 matches (found: ${searchCount})`);
+    const searchCount = await evaluate('document.querySelectorAll(".menu-card").length');
+    assert(searchCount === 2, `Search for 'Biryani' displays exact 2 matches (found: ${searchCount})`);
 
     // Clear search
     await evaluate('document.getElementById("btn-clear-search").click()');
