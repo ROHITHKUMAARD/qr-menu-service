@@ -1,7 +1,7 @@
 # System Specification: QR Menu Service
 
 ## 1. Overview
-The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digital menu and ordering experience for Indian casual and fine-casual restaurants. Checkpoint 2B delivered the bilingual menu interface and browsing system. Checkpoint 2C delivered the in-browser cart system, quantity controls, and WhatsApp click-to-chat order generation. **Checkpoint 2D** delivers free static hosting on GitHub Pages, live public deployment, high-resolution branded QR code generation, owner download capabilities, and programmatic QR decoding verification.
+The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digital menu and ordering experience for Indian casual and fine-casual restaurants. Checkpoint 2B delivered the bilingual menu interface and browsing system. Checkpoint 2C delivered the in-browser cart system, quantity controls, and WhatsApp click-to-chat order generation. Checkpoint 2D delivered free static hosting on GitHub Pages, live public deployment, high-resolution branded QR code generation, owner download capabilities, and programmatic QR decoding verification. **Checkpoint 2E** delivers the comprehensive product quality assurance, accessibility validation, client-readiness audit, and commercial sales-readiness framework.
 
 ---
 
@@ -15,6 +15,7 @@ The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digita
 - **Hosting & CDN:** GitHub Pages (Static hosting, automated SSL, global edge delivery)
 - **QR Generation:** High-resolution QR code generator (`qrcode` library)
 - **QR Decoding & Verification:** `jsqr` + `pngjs` programmatic validation
+- **QA Automation:** Headless Chrome CDP test runners (`verify-checkpoint-2c.mjs`, `verify-qr-code.mjs`, `verify-production-live.mjs`, `audit-qa.mjs`)
 
 ---
 
@@ -42,50 +43,56 @@ The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digita
 
 ---
 
-## 5. Checkpoint 2D Functional Specifications (Current)
-
-### 5.1 Hosting Provider Evaluation & Selection
-- **Evaluated Options:**
-  - *Cloudflare Pages:* Requires unauthenticated `wrangler login` interactive terminal prompt. Temporary preview disallowed.
-  - *Vercel:* Saved authentication token expired; requires interactive browser login.
-  - *Netlify:* Requires unauthenticated interactive CLI sign-in.
-  - *GitHub Pages:* **Selected.** The host machine has an active GitHub authentication in Windows Credential Manager under account `ROHITHKUMAARD` with verified `repo` OAuth scope. GitHub Pages provides 100% free static hosting, automated SSL certificate, global CDN edge routing, and public repository accessibility.
-- **Repository Name:** `qr-menu-service` (under `https://github.com/ROHITHKUMAARD/qr-menu-service`)
-- **Target Production URL:** `https://rohithkumaard.github.io/qr-menu-service/`
-- **Zero Cost Guarantee:** Completely free tier, zero domain purchases, zero paid add-ons, zero payment credentials entered.
-
-### 5.2 QR Code Generation & Branding
-- **Encoded Payload:** Must encode the exact live public deployment URL (`https://rohithkumaard.github.io/qr-menu-service/`). Never localhost, file path, or temporary link.
-- **Visual Presentation & Quality:**
-  - High resolution (minimum 300 DPI equivalent, 1200×1600 print-ready card, and clean standalone QR matrix).
-  - Spice Street authentic restaurant branding:
-    - Primary Forest Green header (`#183B2B`) and Warm Cream card background (`#FAF8F5`).
-    - Logo symbol (`🌿`), bilingual restaurant name ("Spice Street / मसाला स्ट्रीट").
-    - Outlet location ("Connaught Place, New Delhi").
-    - Action instruction: "Scan to view digital menu & order via WhatsApp".
-    - Deep green quiet zone (border margin) ensuring error-free smartphone camera recognition.
-    - Error correction level: High (Level H or Q) to ensure scannability even under challenging restaurant lighting.
-  - Formats: High-resolution PNG saved to disk (`qr-code/spice-street-menu-qr.png`) and downloadable via the web interface.
-
-### 5.3 Owner Download & Print Presentation
-- A dedicated "Table QR Code / टेबल क्यूआर कोड" modal accessible from the footer of the menu app.
-- Restaurant owners can preview the print-ready table tent card directly in the browser.
-- Instant "Download High-Res PNG" button for commercial printing.
-- Built-in "Print QR Card" button with custom `@media print` CSS for instant clean desktop printing without browser headers.
-
-### 5.4 Programmatic Verification & Acceptance Criteria
-1. Programmatic decoding of the generated QR PNG using `jsqr` confirms that the decoded text matches `https://rohithkumaard.github.io/qr-menu-service/` character-for-character.
-2. The live public URL is accessed in real Headless Chrome and verified to return HTTP 200 with all 25 dishes, 7 categories, cart interactions, language toggle, and WhatsApp ordering working flawlessly.
-3. Zero browser console errors and zero uncaught exceptions on the live production deployment.
-4. Mobile (375px) and Desktop (1280px) screenshots captured from the live deployed site.
+## 5. Checkpoint 2D Functional Specifications (Completed)
+- GitHub Pages live production deployment at `https://rohithkumaard.github.io/qr-menu-service/`.
+- High-resolution standalone QR code PNG (`qr-code/spice-street-qr-code.png`) and vector SVG (`qr-code/spice-street-qr-code.svg`).
+- 300 DPI print-ready tabletop tent card PNG (`qr-code/spice-street-table-card.png`) and HTML template (`qr-code/spice-street-table-card.html`).
+- Programmatic QR decoding verification matching the exact live URL.
+- In-app Owner Tabletop QR Modal with `@media print` print styling.
 
 ---
 
-## 6. Strict Out-of-Scope Boundaries (Prohibited for 2D)
+## 6. Checkpoint 2E Quality & Client-Readiness Framework (Current)
+
+### 6.1 Quality Assurance Standards
+- **Network Health:** Zero broken local asset links; all scripts, fonts, and images return HTTP 200.
+- **Console Integrity:** Zero browser runtime exceptions and zero console errors across all viewports.
+- **Accessibility (WCAG 2.1 AA Target):**
+  - All interactive buttons declare accessible names via text content or `aria-label`.
+  - Input fields declare explicit `placeholder` and `aria-label`.
+  - Modals implement `role="dialog"`, `aria-modal="true"`, and `aria-labelledby`.
+  - State changes reflect via `aria-pressed` and `aria-hidden` attributes.
+  - Active keyboard navigation supported via standard Tab order and Escape key dismissal.
+- **Responsive Geometry:**
+  - Mobile (375 × 812 px): Compact single-column card feed, sticky search/filter bar, fixed bottom cart bar, full-screen slide-up drawer.
+  - Tablet (768 × 1024 px): 2-column card grid, floating cart bar, right-hand slide-out drawer.
+  - Desktop (1280 × 800+ px): 2-3 column card grid, floating cart pill, right-hand panel drawer.
+
+### 6.2 Client Onboarding Specification
+To deliver this product to a real restaurant client, the following configuration data is required:
+1. **Business Profile:**
+   - Legal/Trade Name in English and Regional Language (e.g. Hindi, Tamil, Telugu, Marathi).
+   - Address, Landmarking, Operating Hours, Establishment Type (Dine-in, Cloud Kitchen, QSR).
+   - FSSAI Registration / License Number.
+2. **Catalog Specification:**
+   - Categories list with icons.
+   - Menu items: Item ID, bilingual titles, bilingual descriptions, price in INR, dietary classification (Pure Veg vs Non-Veg), availability status, and tags (e.g. Chef Special, Spicy, Gluten-Free).
+3. **Ordering Setup:**
+   - Dedicated WhatsApp Business phone number monitored at the cashier/billing station during operational hours.
+4. **Branding Assets:**
+   - Brand color codes (primary hex, accent hex).
+   - High-res restaurant logo (vector SVG or transparent PNG).
+5. **Physical Print Handover:**
+   - Recommended 4" × 6" or 5" × 7" acrylic table tent stands.
+   - Matte or anti-glare lamination to avoid glare from ambient restaurant lights.
+
+---
+
+## 7. Strict Out-of-Scope Boundaries (Prohibited for 2E)
 - Backend or server-side database.
 - User authentication or password logins.
 - Payment gateway integrations (Razorpay, Stripe, etc.).
 - Admin backend dashboard.
 - Automated WhatsApp messaging / bots.
 - Multi-restaurant provisioning.
-- Any Checkpoint 2E or 2F features.
+- Any Checkpoint 2F features.
