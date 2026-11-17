@@ -510,13 +510,14 @@ const MENU_ITEMS = [
   }
 ];
 
-// Restaurant Configuration (Checkpoint 2C)
+// Restaurant Configuration (Checkpoint 2C & 2D)
 const RESTAURANT_CONFIG = {
   // Explicitly labeled fictional demonstration number (India country code 91 + 10 digits)
   whatsappNumber: "919876543210",
   whatsappNumberFormatted: "+91 98765 43210",
   currencySymbol: "₹",
-  cartStorageKey: "spice_street_cart_v1"
+  cartStorageKey: "spice_street_cart_v1",
+  publicDeploymentUrl: "https://rohithkumaard.github.io/qr-menu-service/"
 };
 
 // UI Localization strings
@@ -556,7 +557,14 @@ const UI_STRINGS = {
     tablePlaceholder: "Table number or special cooking notes (optional)",
     itemRemoved: "Item removed from cart",
     soldOutWarning: "This item is currently sold out and cannot be added.",
-    invalidPhoneError: "Unable to open WhatsApp: The configured restaurant number is invalid."
+    invalidPhoneError: "Unable to open WhatsApp: The configured restaurant number is invalid.",
+    // Checkpoint 2D Table QR strings
+    tableQrBtn: "Table QR Code",
+    qrModalTitle: "Tabletop QR Code",
+    qrModalSubtitle: "Scan with any smartphone camera to view the live menu & order via WhatsApp.",
+    downloadCardBtn: "Download Table Tent Card (PNG)",
+    downloadQrBtn: "Download Standalone QR (PNG)",
+    printCardBtn: "Print Table Tent Card"
   },
   hi: {
     menuTitle: "हमारा मेन्यू",
@@ -593,7 +601,14 @@ const UI_STRINGS = {
     tablePlaceholder: "टेबल नंबर या कोई विशेष निर्देश (वैकल्पिक)",
     itemRemoved: "व्यंजन थाली से हटा दिया गया",
     soldOutWarning: "यह व्यंजन वर्तमान में उपलब्ध नहीं है।",
-    invalidPhoneError: "व्हाट्सएप खोलने में असमर्थ: कॉन्फ़िगर किया गया फ़ोन नंबर अमान्य है।"
+    invalidPhoneError: "व्हाट्सएप खोलने में असमर्थ: कॉन्फ़िगर किया गया फ़ोन नंबर अमान्य है।",
+    // Checkpoint 2D Table QR strings
+    tableQrBtn: "टेबल क्यूआर कोड",
+    qrModalTitle: "टेबलटॉप क्यूआर कोड",
+    qrModalSubtitle: "लाइव मेनू देखने और व्हाट्सएप पर ऑर्डर करने के लिए किसी भी स्मार्टफोन से स्कैन करें।",
+    downloadCardBtn: "टेबल कार्ड डाउनलोड करें (PNG)",
+    downloadQrBtn: "क्यूआर कोड डाउनलोड करें (PNG)",
+    printCardBtn: "टेबल कार्ड प्रिंट करें"
   }
 };
 

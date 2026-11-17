@@ -1,7 +1,7 @@
 # System Specification: QR Menu Service
 
 ## 1. Overview
-The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digital menu and ordering experience for Indian casual and fine-casual restaurants. Checkpoint 2B delivered the bilingual menu interface and browsing system. **Checkpoint 2C** delivers the in-browser cart system, quantity controls, and WhatsApp click-to-chat order generation.
+The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digital menu and ordering experience for Indian casual and fine-casual restaurants. Checkpoint 2B delivered the bilingual menu interface and browsing system. Checkpoint 2C delivered the in-browser cart system, quantity controls, and WhatsApp click-to-chat order generation. **Checkpoint 2D** delivers free static hosting on GitHub Pages, live public deployment, high-resolution branded QR code generation, owner download capabilities, and programmatic QR decoding verification.
 
 ---
 
@@ -12,10 +12,13 @@ The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digita
 - **Scripting:** Vanilla JavaScript (ES6+, `js/app.js`, `js/menu-data.js`)
 - **Client Storage:** Web Storage API (`localStorage`) for cart persistence
 - **Protocol:** WhatsApp Click-to-Chat URI scheme (`https://wa.me/`)
+- **Hosting & CDN:** GitHub Pages (Static hosting, automated SSL, global edge delivery)
+- **QR Generation:** High-resolution QR code generator (`qrcode` library)
+- **QR Decoding & Verification:** `jsqr` + `pngjs` programmatic validation
 
 ---
 
-## 3. Brand & Design Tokens (Preserved from 2B)
+## 3. Brand & Design Tokens
 - **Backgrounds:** Warm White / Cream (`--bg-page: #FAF8F5`, `--bg-surface: #FFFFFF`, `--bg-subtle: #F3EFEA`)
 - **Primary Color:** Deep Forest Green (`--primary: #183B2B`, `--primary-light: #23523D`, `--primary-surface: #EDF3F0`)
 - **Accent Color:** Muted Orange (`--accent: #D97724`, `--accent-hover: #BF651B`, `--accent-surface: #FEF3EB`)
@@ -30,113 +33,59 @@ The QR Menu Service provides an ultra-fast, mobile-first, zero-dependency digita
 
 ---
 
-## 4. Checkpoint 2C Functional Specifications
-
-### 4.1 Cart State & Storage
-- Cart is stored as a key-value dictionary in memory and synchronized with `localStorage`:
-  ```json
-  {
-    "str-01": 2,
-    "si-01": 1
-  }
-  ```
-- **Storage Key:** `spice_street_cart_v1`
-- **Integrity Validation:** If an item in storage no longer exists in `MENU_ITEMS` or is marked `isAvailable: false`, it is ignored/cleaned upon load.
-- **Persistence:** Items remain in the cart across page reloads and browser sessions until checked out or cleared.
-
-### 4.2 Menu Card Action Controls
-- Available items feature an **"Add to Cart"** (`+ Add`) button on the card.
-- When an item is added to the cart, the button transitions into a quantity control stepper:
-  - Decrement (`-`) button: Decreases quantity by 1 (removes item if quantity drops from 1 to 0).
-  - Quantity label: Displays current quantity (e.g. `2`).
-  - Increment (`+`) button: Increases quantity by 1.
-- Sold-out / unavailable items (`isAvailable: false`):
-  - "Add" button is replaced by a disabled "Unavailable" / "Sold Out" indicator.
-  - Adding to cart is completely blocked both via UI and programmatic checks.
-
-### 4.3 Floating Cart Bar
-- Fixed at the bottom of the viewport on mobile devices (and floating floating bar on desktop/tablet).
-- Displays:
-  - Bag/Cart icon with total item count badge.
-  - Subtotal amount in Rupees (`₹...`).
-  - "View Cart" / "कार्ट देखें" button.
-- Hidden when cart is empty (`totalItems === 0`).
-- Clicking the bar opens the Cart Drawer.
-
-### 4.4 Responsive Cart Drawer / Panel
-- Slide-out drawer on mobile (slides up from bottom or from right), modal/sheet on desktop.
-- Header:
-  - Title: "Your Cart" / "आपकी थाली (कार्ट)"
-  - Item count badge
-  - Close button (`✕`)
-- Content list:
-  - Each item card shows:
-    - FSSAI dietary indicator (Veg/Non-Veg dot)
-    - Item name in current active language (with secondary language subtitle)
-    - Unit price (`₹...`)
-    - Stepper controls (`-`, quantity, `+`)
-    - Item line total (`₹...`)
-    - Remove button (trash icon or `✕`)
-- Footer:
-  - Item count and subtotal
-  - Tax note: "Inclusive of all taxes" / "सभी कर शामिल हैं"
-  - Grand total formatted with `₹`
-  - Action buttons:
-    - "Clear Cart" / "कार्ट खाली करें" (with instant reset)
-    - "Order via WhatsApp" / "व्हाट्सएप पर ऑर्डर करें" (primary deep green button with WhatsApp icon)
-- Empty state:
-  - When all items are removed, displays a clean empty cart illustration, friendly bilingual message ("Your cart is empty"), and a "Browse Menu" button that closes the drawer.
-
-### 4.5 WhatsApp Order Payload & URL Generation
-- **Restaurant WhatsApp Configuration:**
-  - Configurable parameter: `RESTAURANT_CONFIG.whatsappNumber = "919876543210"` (Explicitly labeled fictional demo number for Connaught Place outlet).
-  - Validation: Number must be a valid E.164 phone string without `+` or special characters (regex: `/^91\d{10}$/` for India or `/^\d{10,15}$/`).
-  - If the number is missing or invalid, an inline alert is surfaced and WhatsApp navigation is safely prevented.
-- **Message Content Format:**
-  Structured, human-readable WhatsApp message:
-  ```
-  *Spice Street — New Order / नया ऑर्डर*
-  ================================
-  1. Paneer Tikka Angare (पनीर टिक्का अंगारे)
-     Qty: 2 × ₹260 = ₹520
-  2. Masala Dosa (मसाला डोसा)
-     Qty: 1 × ₹160 = ₹160
-  ================================
-  *Total Items / कुल व्यंजन:* 3
-  *Grand Total / कुल योग:* ₹680 (Incl. of taxes)
-  ================================
-  _Order placed via Spice Street QR Menu._
-  _Please confirm table number or takeaway details._
-  ```
-- **Official URL Standard:**
-  `https://wa.me/<VALID_PHONE>?text=<URL_ENCODED_MESSAGE>`
-- Encoded using standard `encodeURIComponent` to preserve line breaks (`%0A`), asterisks, and Devanagari characters.
-- Customer initiates manual send in WhatsApp — zero automated message transmission.
+## 4. Checkpoint 2C Functional Specifications (Completed)
+- In-memory & `localStorage` shopping cart.
+- Menu card quantity steppers and sold-out prevention.
+- Floating cart bottom bar with reactive item count and subtotal.
+- Slide-out responsive cart drawer with item details, bill breakdown, and clear cart.
+- WhatsApp click-to-chat order generation (`https://wa.me/` standard).
 
 ---
 
-## 5. Strict Out-of-Scope Boundaries (Prohibited for 2C)
-- Payment gateways (Razorpay, Stripe, Paytm, UPI intent)
-- Backend API, server-side database, user authentication
-- Automatic WhatsApp message delivery
-- Order tracking, push notifications, or status webhooks
-- Admin dashboard or kitchen order ticket (KOT) printing
+## 5. Checkpoint 2D Functional Specifications (Current)
+
+### 5.1 Hosting Provider Evaluation & Selection
+- **Evaluated Options:**
+  - *Cloudflare Pages:* Requires unauthenticated `wrangler login` interactive terminal prompt. Temporary preview disallowed.
+  - *Vercel:* Saved authentication token expired; requires interactive browser login.
+  - *Netlify:* Requires unauthenticated interactive CLI sign-in.
+  - *GitHub Pages:* **Selected.** The host machine has an active GitHub authentication in Windows Credential Manager under account `ROHITHKUMAARD` with verified `repo` OAuth scope. GitHub Pages provides 100% free static hosting, automated SSL certificate, global CDN edge routing, and public repository accessibility.
+- **Repository Name:** `qr-menu-service` (under `https://github.com/ROHITHKUMAARD/qr-menu-service`)
+- **Target Production URL:** `https://rohithkumaard.github.io/qr-menu-service/`
+- **Zero Cost Guarantee:** Completely free tier, zero domain purchases, zero paid add-ons, zero payment credentials entered.
+
+### 5.2 QR Code Generation & Branding
+- **Encoded Payload:** Must encode the exact live public deployment URL (`https://rohithkumaard.github.io/qr-menu-service/`). Never localhost, file path, or temporary link.
+- **Visual Presentation & Quality:**
+  - High resolution (minimum 300 DPI equivalent, 1200×1600 print-ready card, and clean standalone QR matrix).
+  - Spice Street authentic restaurant branding:
+    - Primary Forest Green header (`#183B2B`) and Warm Cream card background (`#FAF8F5`).
+    - Logo symbol (`🌿`), bilingual restaurant name ("Spice Street / मसाला स्ट्रीट").
+    - Outlet location ("Connaught Place, New Delhi").
+    - Action instruction: "Scan to view digital menu & order via WhatsApp".
+    - Deep green quiet zone (border margin) ensuring error-free smartphone camera recognition.
+    - Error correction level: High (Level H or Q) to ensure scannability even under challenging restaurant lighting.
+  - Formats: High-resolution PNG saved to disk (`qr-code/spice-street-menu-qr.png`) and downloadable via the web interface.
+
+### 5.3 Owner Download & Print Presentation
+- A dedicated "Table QR Code / टेबल क्यूआर कोड" modal accessible from the footer of the menu app.
+- Restaurant owners can preview the print-ready table tent card directly in the browser.
+- Instant "Download High-Res PNG" button for commercial printing.
+- Built-in "Print QR Card" button with custom `@media print` CSS for instant clean desktop printing without browser headers.
+
+### 5.4 Programmatic Verification & Acceptance Criteria
+1. Programmatic decoding of the generated QR PNG using `jsqr` confirms that the decoded text matches `https://rohithkumaard.github.io/qr-menu-service/` character-for-character.
+2. The live public URL is accessed in real Headless Chrome and verified to return HTTP 200 with all 25 dishes, 7 categories, cart interactions, language toggle, and WhatsApp ordering working flawlessly.
+3. Zero browser console errors and zero uncaught exceptions on the live production deployment.
+4. Mobile (375px) and Desktop (1280px) screenshots captured from the live deployed site.
 
 ---
 
-## 6. Verification Criteria
-1. Add item to cart increases cart total items and updates card controls.
-2. Add duplicate item increases quantity properly.
-3. Quantity increment and decrement operate properly (decrement from 1 removes item).
-4. Direct removal of item works cleanly.
-5. Clear cart clears all items from memory and `localStorage`.
-6. Subtotal and grand total match exact unit price * quantity sum.
-7. Sold-out items cannot be added to cart under any circumstance.
-8. Empty cart handles gracefully with no exceptions.
-9. Cart contents persist after page reload via `localStorage`.
-10. Language switch preserves cart state and translates cart labels and order summary.
-11. WhatsApp payload includes all required details and conforms to `https://wa.me/` standard.
-12. Invalid phone number handling prevents navigation and surfaces validation feedback.
-13. Responsive drawer functions smoothly on mobile, tablet, and desktop.
-14. Regression: Checkpoint 2B features (25 items, 7 categories, search, veg filters) continue to pass 100%.
-15. Zero console errors or uncaught exceptions in real Chrome browser.
+## 6. Strict Out-of-Scope Boundaries (Prohibited for 2D)
+- Backend or server-side database.
+- User authentication or password logins.
+- Payment gateway integrations (Razorpay, Stripe, etc.).
+- Admin backend dashboard.
+- Automated WhatsApp messaging / bots.
+- Multi-restaurant provisioning.
+- Any Checkpoint 2E or 2F features.

@@ -1,69 +1,57 @@
-# Checkpoint 2C Implementation Plan: Cart, Quantity & WhatsApp Ordering
+# Checkpoint 2D Implementation Plan: QR Code Generation, Free Hosting & Live Deployment
 
 ## Objective
-Implement a robust, client-side in-memory & `localStorage` shopping cart, interactive quantity controls, responsive slide-out cart drawer, and WhatsApp click-to-chat order generator while preserving all Checkpoint 2B features and strict scope boundaries.
+Deploy the Spice Street digital menu to GitHub Pages under the user's authenticated free tier, generate high-resolution print-ready branded QR code assets encoding the live URL, provide an in-browser owner QR download modal, programmatically decode and verify the QR code, and validate the live deployed site in real Chrome with full acceptance testing.
 
 ---
 
 ## Task Breakdown
 
-### Phase 1: Planning & Dataset Configuration
-- [x] Task 1.1: Update `.planning/ROADMAP.md`, `SPEC.md`, `PLAN.md`, and `STATE.md` for Checkpoint 2C.
-- [ ] Task 1.2: Extend `js/menu-data.js`:
-  - Add restaurant WhatsApp configuration with labeled demo number (`"919876543210"`).
-  - Add bilingual UI localization strings for cart drawer, stepper controls, subtotal, taxes, order note, and WhatsApp CTA in English and Hindi.
+### Phase 1: Planning & Safeguards
+- [x] Task 1.1: Update `.planning/ROADMAP.md`, `SPEC.md`, `PLAN.md`, and `STATE.md`.
+- [x] Task 1.2: Evaluate free hosting options and confirm active authenticated GitHub credentials in Windows Credential Manager (`ROHITHKUMAARD`).
+- [x] Task 1.3: Install zero-dependency dev tools (`qrcode`, `jsqr`, `pngjs`) for QR generation and programmatic verification, while maintaining clean git tracking.
 
-### Phase 2: Interface Markup & Responsive Styling
-- [ ] Task 2.1: Update `index.html`:
-  - Add Add-to-Cart / Stepper button container on menu card template.
-  - Add Floating Cart Bar fixed at viewport bottom (with count badge and total).
-  - Add Slide-out Cart Drawer modal with backdrop, item list, bill summary, and WhatsApp CTA.
-  - Add accessible modal attributes (`role="dialog"`, `aria-modal="true"`, `aria-labelledby`).
-- [ ] Task 2.2: Update `css/styles.css`:
-  - Menu card action buttons (Add to cart button, Stepper `[- qty +]`).
-  - Floating cart bottom bar styling with animations and badge.
-  - Slide-out Cart Drawer (responsive: bottom sheet on mobile, right panel on tablet/desktop).
-  - Cart item row layout (diet badge, title, price, stepper, remove button).
-  - Bill calculation details and WhatsApp CTA button (deep green `#183B2B` with hover and WhatsApp branding).
-  - Empty cart visual styling.
-  - Backdrop blur and overlay.
+### Phase 2: Remote Repository Creation & Live Deployment
+- [ ] Task 2.1: Create remote public repository `ROHITHKUMAARD/qr-menu-service` on GitHub via authenticated GitHub REST API.
+- [ ] Task 2.2: Add git remote `origin` pointing to `https://github.com/ROHITHKUMAARD/qr-menu-service.git`.
+- [ ] Task 2.3: Push initial commits to remote `origin/master`.
+- [ ] Task 2.4: Enable GitHub Pages on repository using `master` branch `/` (root).
+- [ ] Task 2.5: Verify live public deployment URL `https://rohithkumaard.github.io/qr-menu-service/`.
 
-### Phase 3: Application Logic (Vanilla JavaScript ES6+)
-- [ ] Task 3.1: Cart State Management in `js/app.js`:
-  - Persistent state in `localStorage` under `spice_street_cart_v1`.
-  - Methods: `addToCart(itemId)`, `updateQuantity(itemId, delta)`, `removeFromCart(itemId)`, `clearCart()`, `getCartSummary()`.
-  - Safety check: Verify item is available before adding; prevent adding sold-out items.
-- [ ] Task 3.2: Card-Level Reactive Controls:
-  - When quantity > 0, replace "Add" with `[-  qty  +]`.
-  - Sync state across search results, filters, and language switches.
-- [ ] Task 3.3: Cart Drawer Interaction:
-  - Open/close drawer with click on floating bar, close button, backdrop, or Escape key.
-  - Live re-render of drawer item list and totals.
-- [ ] Task 3.4: WhatsApp Order Generation:
-  - Phone validation utility (`isValidWhatsAppNumber(num)`).
-  - Message builder formatting restaurant name, items, qty, unit price, line totals, and grand total in active language.
-  - Build compliant `https://wa.me/<phone>?text=<encoded>` URL.
-  - Handle invalid number gracefully with user alert.
+### Phase 3: High-Resolution Branded QR Code Generation
+- [ ] Task 3.1: Create Node.js script `scripts/generate-qr.mjs`:
+  - Encodes the verified live public URL `https://rohithkumaard.github.io/qr-menu-service/`.
+  - Generates high-res QR matrix (Level H error correction, 10 modules quiet zone).
+  - Composites a print-ready table card image (1200×1600 px) featuring Spice Street branding, bilingual headers, and scanning call to action.
+  - Generates both the print card (`qr-code/spice-street-table-card.png`) and standalone high-res QR (`qr-code/spice-street-qr-code.png`).
+- [ ] Task 3.2: Implement in-app Owner QR Modal in `index.html`, `css/styles.css`, and `js/app.js`:
+  - Footer link: "📱 Table QR Code / टेबल क्यूआर कोड".
+  - Modal with high-res QR preview, instant PNG download button, and print styling (`@media print`).
 
-### Phase 4: Automated Testing & Verification
-- [ ] Task 4.1: Extend Node.js test suite (`tests/verify-checkpoint-2c.mjs`):
-  - Cart operations: Add, duplicate increment, stepper decrease, remove, clear, empty cart.
-  - Accurate calculation of subtotal and grand total.
-  - Sold-out item protection.
-  - `localStorage` persistence simulation.
-  - WhatsApp payload validation and URL encoding checks.
-  - Invalid phone number validation.
-  - Regression check for all 29 Checkpoint 2B assertions.
-- [ ] Task 4.2: Update Headless Chrome Browser CDP test suite (`tests/verify-in-browser.mjs`):
-  - Emulate real user clicking "Add to Cart", stepper `+` and `-`.
-  - Open cart drawer, verify item list and totals.
-  - Switch language to Hindi and verify cart labels update to Hindi.
-  - Test Proceed to WhatsApp URL generation.
-  - Test persistence across simulated page reload.
-  - Capture responsive screenshots of the Cart Drawer on mobile, tablet, and desktop.
-  - Verify 0 console errors and 0 uncaught exceptions.
+### Phase 4: Critical QR Decoding & Programmatic Verification
+- [ ] Task 4.1: Create `tests/verify-qr-code.mjs`:
+  - Reads generated PNG file from disk via `pngjs`.
+  - Decodes pixels using `jsqr`.
+  - Programmatically asserts that `decoded.data === 'https://rohithkumaard.github.io/qr-menu-service/'`.
+  - Asserts minimum resolution, aspect ratio, and contrast.
 
-### Phase 5: State Update, Git Commit & Reporting
-- [ ] Task 5.1: Update `.planning/STATE.md`.
-- [ ] Task 5.2: Commit Checkpoint 2C changes to Git.
-- [ ] Task 5.3: Produce final evidence-based report.
+### Phase 5: Production Acceptance Testing in Real Chrome
+- [ ] Task 5.1: Create `tests/verify-production-live.mjs`:
+  - Launches Headless Chrome and opens the live public URL `https://rohithkumaard.github.io/qr-menu-service/`.
+  - Verifies:
+    - HTTP status 200 and page title.
+    - All 7 categories and 25 items render.
+    - English / Hindi language toggle works live.
+    - Veg / Non-Veg filters work live.
+    - Search works live.
+    - Cart additions, steppers, and bill calculations work live.
+    - WhatsApp order URI generates cleanly.
+    - Zero console errors and zero uncaught exceptions.
+  - Captures live screenshots at Desktop (1280px) and Mobile (375px) in `tests/screenshots/`.
+
+### Phase 6: State Update, Git Commit & Reporting
+- [ ] Task 6.1: Update `.planning/STATE.md`.
+- [ ] Task 6.2: Commit Checkpoint 2D changes to Git.
+- [ ] Task 6.3: Push final commit to GitHub remote `origin/master`.
+- [ ] Task 6.4: Produce final evidence-based report.

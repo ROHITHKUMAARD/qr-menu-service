@@ -1,27 +1,30 @@
 # Project State: QR Menu Service
 
 ## Current Status
-- **Active Checkpoint:** Checkpoint 2C (Cart, Quantity Management & WhatsApp Ordering)
-- **Status:** COMPLETED & VERIFIED
+- **Active Checkpoint:** Checkpoint 2D (QR Code Generation, Free Hosting & Live Deployment)
+- **Status:** IN PROGRESS
 - **Last Updated:** 2026-11-17
 
 ## Checkpoint History
 - **Checkpoint 1:** Architecture Baseline — Completed / Reconstructed.
 - **Checkpoint 2A:** Design System Foundations — Completed / Reconstructed.
 - **Checkpoint 2B:** Menu Interface & Bilingual Display — COMPLETED & VERIFIED (Commit `654e5ee`).
-- **Checkpoint 2C:** Cart, Quantity Management & WhatsApp Ordering — COMPLETED & VERIFIED.
-  - [x] Planning files updated (`ROADMAP.md`, `SPEC.md`, `PLAN.md`, `STATE.md`).
-  - [x] Configured labeled demo WhatsApp number (`"919876543210"`) and bilingual cart strings in `js/menu-data.js`.
-  - [x] Card Add/Stepper buttons, floating cart bottom bar, and slide-out cart drawer modal in `index.html`.
-  - [x] Responsive CSS styling for cart UI, drawer animation, and responsive layouts in `css/styles.css`.
-  - [x] In-memory & `localStorage` cart state management with available-item validation in `js/app.js`.
-  - [x] WhatsApp click-to-chat URL generator adhering to `https://wa.me/` standard with proper URL encoding.
-  - [x] Automated test suite `tests/verify-checkpoint-2c.mjs` (40/40 tests passing).
-  - [x] Real Headless Chrome CDP verification `tests/verify-in-browser.mjs` passing with 0 errors and responsive screenshots.
-- **Checkpoint 2D / 3:** QR Code Generation & Table Provisioning — NOT STARTED (Strict boundary enforced).
+- **Checkpoint 2C:** Cart, Quantity Management & WhatsApp Ordering — COMPLETED & VERIFIED (Commit `ddedf0b`).
+- **Checkpoint 2D:** QR Code Generation, Free Hosting & Live Deployment — IN PROGRESS.
+  - [x] Evaluated free hosting providers (Cloudflare, Netlify, Vercel, GitHub Pages).
+  - [x] Identified valid GitHub authentication (`ROHITHKUMAARD`) in Windows Credential Manager with `repo` scope.
+  - [x] Installed `qrcode`, `jsqr`, `pngjs` as local dev tools with clean `.gitignore`.
+  - [ ] Create remote repo `ROHITHKUMAARD/qr-menu-service` on GitHub and push code.
+  - [ ] Enable GitHub Pages on repository.
+  - [ ] Verify live public deployment URL (`https://rohithkumaard.github.io/qr-menu-service/`).
+  - [ ] Generate high-resolution branded QR PNG assets encoding the live URL.
+  - [ ] Add Owner QR Download & Print modal to web interface.
+  - [ ] Programmatically decode and verify the QR PNG using `jsqr`.
+  - [ ] Execute live production browser acceptance tests in real Chrome with screenshots.
+- **Checkpoint 3:** Multi-Table Provisioning & Dynamic Parameters — NOT STARTED (Strict boundary enforced).
 
 ## Key Decisions & Architectural Guardrails
-- **Cart Storage:** Client-side only using `localStorage` key `spice_street_cart_v1` with automatic sanitation against current available items.
-- **Unavailable Items:** Strictly un-orderable. No cart button is presented for sold-out dishes, and attempts to programmatically add unavailable items are rejected.
-- **WhatsApp Integration:** Uses standard `https://wa.me/<phone>?text=<encoded>` click-to-chat URI. The customer manually sends the order message. No automated messaging or backend proxy.
+- **Hosting Provider:** GitHub Pages under `https://rohithkumaard.github.io/qr-menu-service/`.
+- **Zero Cost:** Verified free-tier hosting. No paid domain, no credit cards, no credentials exposed.
+- **QR Encoding:** Encodes strictly the final public live deployment URL. Never localhost or local file path.
 - **Strict Scope Boundaries:** Zero payment processors (Razorpay/Stripe), zero backend databases, zero authentication, zero automated order status webhooks.

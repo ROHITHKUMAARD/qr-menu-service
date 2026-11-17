@@ -29,22 +29,33 @@ A lightweight, fast, mobile-first QR code digital menu and ordering service tail
 - [x] Mobile-first responsive UI (Mobile, Tablet, Desktop)
 - [x] Automated verification suite & Chrome browser tests
 
-### Checkpoint 2C: Cart, Quantity Management & WhatsApp Ordering (CURRENT FOCUS)
-- [ ] Add to Cart button on available menu cards
-- [ ] Item quantity management (+ / - / remove) in menu card and cart drawer
-- [ ] Prevention of sold-out / unavailable item ordering
-- [ ] Floating cart bar & responsive cart drawer/modal
-- [ ] Subtotal and total calculations (tax-inclusive pricing)
-- [ ] Cart state persistence across page reloads via `localStorage`
-- [ ] Bilingual cart UI (English / Hindi)
-- [ ] WhatsApp ordering payload generator (`https://wa.me/` standard format)
-- [ ] Configurable restaurant WhatsApp number with input validation
-- [ ] Automated regression & new feature verification in Node and real Chrome
+### Checkpoint 2C: Cart, Quantity Management & WhatsApp Ordering
+- [x] Add to Cart button on available menu cards
+- [x] Item quantity management (+ / - / remove) in menu card and cart drawer
+- [x] Prevention of sold-out / unavailable item ordering
+- [x] Floating cart bar & responsive cart drawer/modal
+- [x] Subtotal and total calculations (tax-inclusive pricing)
+- [x] Cart state persistence across page reloads via `localStorage`
+- [x] Bilingual cart UI (English / Hindi)
+- [x] WhatsApp ordering payload generator (`https://wa.me/` standard format)
+- [x] Configurable restaurant WhatsApp number with input validation
+- [x] Automated regression & new feature verification in Node and real Chrome
 
-### Checkpoint 3: QR Code Generation & Table Provisioning (FUTURE)
-- [ ] Client-side SVG/PNG QR code generator
+### Checkpoint 2D: QR Code Generation, Free Hosting & Live Deployment (CURRENT FOCUS)
+- [x] Hosting provider evaluation (GitHub Pages selected: 100% free, SSL, custom domain ready, official CDN)
+- [x] Remote repository setup and public deployment on GitHub Pages
+- [x] Live public production URL verification (`https://rohithkumaard.github.io/qr-menu-service/`)
+- [x] High-resolution downloadable QR code PNG generation with Spice Street branding
+- [x] Adequate quiet zone, contrast ratio, and print-ready presentation (table tent card design)
+- [x] Programmatic QR code decoding verification matching the exact live URL
+- [x] In-app owner QR code modal & download functionality
+- [x] Live production acceptance testing in real Chrome (Desktop & Mobile) with 0 errors
+- [x] Final verification, screenshots, and Git commit
+
+### Checkpoint 3: Multi-Table Provisioning & Dynamic Parameters (FUTURE)
 - [ ] Dynamic URL parameter parsing for table identification (`?table=12`)
-- [ ] Printable table tent cards & layout generation
+- [ ] Table-specific WhatsApp message formatting
+- [ ] Multi-table batch QR tent card generator
 
 ### Checkpoint 4: Admin Management & Menu Customization (FUTURE)
 - [ ] In-browser menu management interface (toggle item availability, update prices)

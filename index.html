@@ -232,10 +232,83 @@
   <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container footer-content">
+      <div class="footer-actions-row">
+        <button type="button" id="btn-open-qr-modal" class="btn-qr-modal-trigger" aria-haspopup="dialog" aria-controls="qr-modal">
+          <span class="qr-btn-icon" aria-hidden="true">📱</span>
+          <span id="label-table-qr">Table QR Code / टेबल क्यूआर</span>
+        </button>
+      </div>
       <p class="footer-note" id="footer-note">Prices are inclusive of applicable taxes. Freshly prepared to order.</p>
-      <p class="footer-copy">© Spice Street • QR Menu Service (Checkpoint 2C Demonstration)</p>
+      <p class="footer-copy">© Spice Street • QR Menu Service (Checkpoint 2D Public Deployment)</p>
     </div>
   </footer>
+
+  <!-- Owner Tabletop QR Code & Print Modal (Checkpoint 2D) -->
+  <div id="qr-modal-backdrop" class="modal-backdrop" hidden></div>
+  <aside
+    id="qr-modal"
+    class="qr-modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="qr-modal-title"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="qr-modal-header">
+      <div class="qr-modal-title-group">
+        <h2 id="qr-modal-title" class="qr-modal-title">Tabletop QR Code</h2>
+        <p id="qr-modal-subtitle" class="qr-modal-subtitle">Scan with any smartphone camera to view the live menu & order via WhatsApp.</p>
+      </div>
+      <button type="button" id="btn-close-qr-modal" class="btn-close-cart" aria-label="Close QR modal">✕</button>
+    </div>
+
+    <div class="qr-modal-body">
+      <!-- Print-Ready Preview Card -->
+      <div class="qr-preview-card" id="printable-qr-card">
+        <div class="qr-card-badge">🌿 TABLETOP DIGITAL MENU</div>
+        <div class="qr-card-brand">
+          <div class="qr-card-logo">🌿</div>
+          <h3 class="qr-card-title">Spice Street</h3>
+          <p class="qr-card-title-hi">मसाला स्ट्रीट</p>
+          <p class="qr-card-tagline">Connaught Place, New Delhi</p>
+        </div>
+        <div class="qr-card-code-wrapper">
+          <img src="qr-code/spice-street-qr-code.png" alt="Spice Street Tabletop QR Code" class="qr-preview-img" id="qr-display-image">
+        </div>
+        <div class="qr-card-cta">
+          <p class="qr-cta-main">SCAN FOR DIGITAL MENU & WHATSAPP ORDERING</p>
+          <p class="qr-cta-sub">डिजिटल मेनू देखें और व्हाट्सएप पर ऑर्डर करें</p>
+          <p class="qr-card-url" id="qr-modal-display-url">https://rohithkumaard.github.io/qr-menu-service/</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons for Owner -->
+      <div class="qr-modal-actions">
+        <a
+          href="qr-code/spice-street-table-card.png"
+          download="spice-street-table-card.png"
+          id="btn-download-qr-card"
+          class="btn-qr-action btn-download"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span id="label-download-card">Download Table Tent Card (PNG)</span>
+        </a>
+        <a
+          href="qr-code/spice-street-qr-code.png"
+          download="spice-street-qr-code.png"
+          id="btn-download-standalone-qr"
+          class="btn-qr-action btn-download-alt"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          <span id="label-download-qr">Download Standalone QR (PNG)</span>
+        </a>
+        <button type="button" id="btn-print-qr-card" class="btn-qr-action btn-print">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span id="label-print-card">Print Table Tent Card</span>
+        </button>
+      </div>
+    </div>
+  </aside>
 
   <!-- Scripts: Dataset first, then Application logic -->
   <script src="js/menu-data.js"></script>

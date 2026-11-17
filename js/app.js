@@ -91,7 +91,20 @@
     labelClearCart: document.getElementById("label-clear-cart"),
     btnWhatsAppOrder: document.getElementById("btn-whatsapp-order"),
     labelWhatsAppCTA: document.getElementById("label-whatsapp-cta"),
-    waDisplayNumber: document.getElementById("wa-display-number")
+    waDisplayNumber: document.getElementById("wa-display-number"),
+
+    // Checkpoint 2D Elements: Owner Table QR Modal
+    btnOpenQrModal: document.getElementById("btn-open-qr-modal"),
+    qrModalBackdrop: document.getElementById("qr-modal-backdrop"),
+    qrModal: document.getElementById("qr-modal"),
+    qrModalTitle: document.getElementById("qr-modal-title"),
+    qrModalSubtitle: document.getElementById("qr-modal-subtitle"),
+    btnCloseQrModal: document.getElementById("btn-close-qr-modal"),
+    btnPrintQrCard: document.getElementById("btn-print-qr-card"),
+    labelTableQr: document.getElementById("label-table-qr"),
+    labelDownloadCard: document.getElementById("label-download-card"),
+    labelDownloadQr: document.getElementById("label-download-qr"),
+    labelPrintCard: document.getElementById("label-print-card")
   };
 
   /**
@@ -391,6 +404,26 @@
     }, 280);
   }
 
+  /**
+   * Open the Tabletop QR Modal (Checkpoint 2D)
+   */
+  function openQrModal() {
+    if (!DOM.qrModal) return;
+    DOM.qrModal.hidden = false;
+    DOM.qrModal.setAttribute("aria-hidden", "false");
+    if (DOM.qrModalBackdrop) DOM.qrModalBackdrop.hidden = false;
+  }
+
+  /**
+   * Close the Tabletop QR Modal (Checkpoint 2D)
+   */
+  function closeQrModal() {
+    if (!DOM.qrModal) return;
+    DOM.qrModal.hidden = true;
+    DOM.qrModal.setAttribute("aria-hidden", "true");
+    if (DOM.qrModalBackdrop) DOM.qrModalBackdrop.hidden = true;
+  }
+
   /* ==========================================================================
      WhatsApp Ordering Integration
      ========================================================================== */
@@ -595,6 +628,29 @@
 
     // WhatsApp Order Button
     DOM.btnWhatsAppOrder.addEventListener("click", handleWhatsAppOrderClick);
+
+    // Checkpoint 2D: Tabletop QR Modal Controls
+    if (DOM.btnOpenQrModal) {
+      DOM.btnOpenQrModal.addEventListener("click", openQrModal);
+    }
+    if (DOM.btnCloseQrModal) {
+      DOM.btnCloseQrModal.addEventListener("click", closeQrModal);
+    }
+    if (DOM.qrModalBackdrop) {
+      DOM.qrModalBackdrop.addEventListener("click", closeQrModal);
+    }
+    if (DOM.btnPrintQrCard) {
+      DOM.btnPrintQrCard.addEventListener("click", () => {
+        window.print();
+      });
+    }
+
+    // Close QR Modal on Escape Key
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && DOM.qrModal && !DOM.qrModal.hidden) {
+        closeQrModal();
+      }
+    });
   }
 
   /**
@@ -661,6 +717,14 @@
     if (DOM.labelClearCart) DOM.labelClearCart.textContent = strings.clearCart;
     if (DOM.labelWhatsAppCTA) DOM.labelWhatsAppCTA.textContent = strings.proceedToWhatsApp;
     if (DOM.waDisplayNumber) DOM.waDisplayNumber.textContent = CONFIG.whatsappNumberFormatted || CONFIG.whatsappNumber;
+
+    // Checkpoint 2D: Table QR UI Labels
+    if (DOM.labelTableQr && strings.tableQrBtn) DOM.labelTableQr.textContent = strings.tableQrBtn;
+    if (DOM.qrModalTitle && strings.qrModalTitle) DOM.qrModalTitle.textContent = strings.qrModalTitle;
+    if (DOM.qrModalSubtitle && strings.qrModalSubtitle) DOM.qrModalSubtitle.textContent = strings.qrModalSubtitle;
+    if (DOM.labelDownloadCard && strings.downloadCardBtn) DOM.labelDownloadCard.textContent = strings.downloadCardBtn;
+    if (DOM.labelDownloadQr && strings.downloadQrBtn) DOM.labelDownloadQr.textContent = strings.downloadQrBtn;
+    if (DOM.labelPrintCard && strings.printCardBtn) DOM.labelPrintCard.textContent = strings.printCardBtn;
   }
 
   /**

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spice Street — Table QR Tent Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 1600px;
+      background: #FAF8F5;
+      font-family: 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+      color: #1D231F;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .tent-card {
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      border: 8px solid #183B2B;
+      border-radius: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px 40px;
+      box-shadow: 0 20px 50px rgba(24, 59, 43, 0.12);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #EDF3F0;
+      color: #183B2B;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 2px solid #183B2B;
+    }
+    .brand-section {
+      margin-top: 15px;
+    }
+    .brand-logo {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .brand-title {
+      font-size: 56px;
+      font-weight: 800;
+      color: #183B2B;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .brand-title-hi {
+      font-size: 44px;
+      font-weight: 700;
+      color: #D97724;
+      margin-top: 4px;
+    }
+    .brand-tagline {
+      font-size: 22px;
+      color: #525C56;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+    .qr-container {
+      background: #FFFFFF;
+      padding: 24px;
+      border-radius: 32px;
+      border: 4px solid #D5CDC0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .qr-image {
+      width: 580px;
+      height: 580px;
+      display: block;
+    }
+    .scan-cta-box {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+    .scan-cta-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #183B2B;
+      letter-spacing: 0.5px;
+    }
+    .scan-cta-title-hi {
+      font-size: 24px;
+      font-weight: 700;
+      color: #D97724;
+    }
+    .scan-instruction {
+      font-size: 20px;
+      color: #525C56;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 6px;
+    }
+    .url-pill {
+      background: #FAF8F5;
+      border: 2px dashed #D5CDC0;
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-size: 20px;
+      font-family: monospace;
+      color: #183B2B;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+    .footer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border-top: 2px solid #EDF3F0;
+      padding-top: 20px;
+      font-size: 18px;
+      color: #828E86;
+    }
+    .diet-pills {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .diet-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: #1D231F;
+    }
+    .diet-box {
+      width: 20px;
+      height: 20px;
+      border: 2px solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .diet-box.veg { border-color: #15803D; }
+    .diet-box.veg::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: #15803D; }
+    .diet-box.non-veg { border-color: #B91C1C; }
+    .diet-box.non-veg::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 9px solid #B91C1C;
+    }
+  </style>
+</head>
+<body>
+  <div class="tent-card">
+    <div class="top-badge">
+      <span>🌿 TABLETOP DIGITAL MENU</span>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-logo">🌿</div>
+      <h1 class="brand-title">Spice Street</h1>
+      <h2 class="brand-title-hi">मसाला स्ट्रीट</h2>
+      <p class="brand-tagline">Authentic Indian Flavours • Connaught Place, New Delhi</p>
+    </div>
+
+    <div class="qr-container">
+      <img src="data:image/png;base64,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" alt="Spice Street Menu QR Code" class="qr-image" />
+    </div>
+
+    <div class="scan-cta-box">
+      <div class="scan-cta-title">SCAN TO VIEW MENU & ORDER VIA WHATSAPP</div>
+      <div class="scan-cta-title-hi">डिजिटल मेनू देखें और व्हाट्सएप पर ऑर्डर करें</div>
+      <div class="scan-instruction">
+        <span>📸 Open Camera & Scan</span>
+        <span>•</span>
+        <span>⚡ No App Download Needed</span>
+      </div>
+      <div class="url-pill">https://rohithkumaard.github.io/qr-menu-service/</div>
+    </div>
+
+    <div class="footer-bar">
+      <div class="diet-pills">
+        <div class="diet-item">
+          <div class="diet-box veg"></div>
+          <span>100% Pure Veg Options</span>
+        </div>
+        <div class="diet-item">
+          <div class="diet-box non-veg"></div>
+          <span>Authentic Non-Veg</span>
+        </div>
+      </div>
+      <div>WhatsApp Direct Ordering Enabled 📱</div>
+    </div>
+  </div>
+</body>
+</html>
