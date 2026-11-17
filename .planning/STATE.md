@@ -1,24 +1,27 @@
 # Project State: QR Menu Service
 
 ## Current Status
-- **Active Checkpoint:** Checkpoint 2B (Restore GSD Planning + Build the Menu Interface)
+- **Active Checkpoint:** Checkpoint 2C (Cart, Quantity Management & WhatsApp Ordering)
 - **Status:** COMPLETED & VERIFIED
 - **Last Updated:** 2026-11-17
 
 ## Checkpoint History
 - **Checkpoint 1:** Architecture Baseline — Completed / Reconstructed.
 - **Checkpoint 2A:** Design System Foundations — Completed / Reconstructed.
-- **Checkpoint 2B:** Menu Interface & Bilingual Display — COMPLETED & VERIFIED.
-  - [x] Planning files reconstructed (`ROADMAP.md`, `SPEC.md`, `PLAN.md`, `STATE.md`).
-  - [x] Structured 25-item bilingual dataset across 7 categories (4, 4, 4, 3, 3, 4, 3).
-  - [x] HTML semantic structure (`index.html`) with Noto Sans & Noto Sans Devanagari fonts.
-  - [x] Responsive CSS design system (`css/styles.css`) adhering to warm cream (`#FAF8F5`), deep green (`#183B2B`), and muted orange (`#D97724`).
-  - [x] Vanilla JS bilingual controller (`js/app.js`) with dynamic language toggle (EN ⇋ HI), category navigation, dietary filtering (All / Veg / Non-Veg), live search, and availability badges.
-  - [x] Automated test suites (`tests/verify-checkpoint-2b.mjs` and `tests/verify-in-browser.mjs`) passing 100% with 0 console errors.
-  - [x] Verified responsive layouts at 375px (mobile), 768px (tablet), and 1280px (desktop) with visual artifacts.
-- **Checkpoint 2C:** Cart & Interaction Enhancements — NOT STARTED (Strict boundary enforced).
+- **Checkpoint 2B:** Menu Interface & Bilingual Display — COMPLETED & VERIFIED (Commit `654e5ee`).
+- **Checkpoint 2C:** Cart, Quantity Management & WhatsApp Ordering — COMPLETED & VERIFIED.
+  - [x] Planning files updated (`ROADMAP.md`, `SPEC.md`, `PLAN.md`, `STATE.md`).
+  - [x] Configured labeled demo WhatsApp number (`"919876543210"`) and bilingual cart strings in `js/menu-data.js`.
+  - [x] Card Add/Stepper buttons, floating cart bottom bar, and slide-out cart drawer modal in `index.html`.
+  - [x] Responsive CSS styling for cart UI, drawer animation, and responsive layouts in `css/styles.css`.
+  - [x] In-memory & `localStorage` cart state management with available-item validation in `js/app.js`.
+  - [x] WhatsApp click-to-chat URL generator adhering to `https://wa.me/` standard with proper URL encoding.
+  - [x] Automated test suite `tests/verify-checkpoint-2c.mjs` (40/40 tests passing).
+  - [x] Real Headless Chrome CDP verification `tests/verify-in-browser.mjs` passing with 0 errors and responsive screenshots.
+- **Checkpoint 2D / 3:** QR Code Generation & Table Provisioning — NOT STARTED (Strict boundary enforced).
 
-## Key Decisions & Implementation Highlights
-- **Framework-free:** Pure Vanilla HTML5, CSS3, ES6+ JS — zero external JS dependencies, lightweight for instantaneous mobile load over restaurant QR codes.
-- **Bilingual System:** Complete Devanagari script support with `Noto Sans Devanagari`, proper `lang` attributes, and authentic translations for all dish names, descriptions, and UI controls.
-- **Strict Out-of-Scope Compliance:** Zero cart buttons, quantity pickers, order totals, or WhatsApp links introduced in Checkpoint 2B.
+## Key Decisions & Architectural Guardrails
+- **Cart Storage:** Client-side only using `localStorage` key `spice_street_cart_v1` with automatic sanitation against current available items.
+- **Unavailable Items:** Strictly un-orderable. No cart button is presented for sold-out dishes, and attempts to programmatically add unavailable items are rejected.
+- **WhatsApp Integration:** Uses standard `https://wa.me/<phone>?text=<encoded>` click-to-chat URI. The customer manually sends the order message. No automated messaging or backend proxy.
+- **Strict Scope Boundaries:** Zero payment processors (Razorpay/Stripe), zero backend databases, zero authentication, zero automated order status webhooks.

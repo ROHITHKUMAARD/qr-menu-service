@@ -135,11 +135,105 @@
 
   </main>
 
+  <!-- Floating Cart Bar (Fixed Bottom) -->
+  <aside id="floating-cart-bar" class="floating-cart-bar" aria-label="Order Cart" hidden>
+    <div class="container floating-cart-inner">
+      <div class="cart-summary-brief">
+        <div class="cart-icon-wrapper" aria-hidden="true">
+          <span class="cart-icon">🛍️</span>
+          <span id="floating-cart-badge" class="floating-cart-badge">0</span>
+        </div>
+        <div class="cart-brief-texts">
+          <span id="floating-cart-count" class="cart-brief-count">0 items</span>
+          <span id="floating-cart-total" class="cart-brief-total">₹0</span>
+        </div>
+      </div>
+      <button type="button" id="btn-open-cart" class="btn-open-cart" aria-haspopup="dialog" aria-controls="cart-drawer">
+        <span id="label-view-cart">View Cart</span>
+        <span class="arrow-icon" aria-hidden="true">→</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Slide-out Cart Drawer Modal & Overlay -->
+  <div id="cart-drawer-backdrop" class="cart-backdrop" hidden></div>
+  <aside
+    id="cart-drawer"
+    class="cart-drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cart-drawer-title"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="cart-drawer-header">
+      <div class="cart-header-title-group">
+        <h2 id="cart-drawer-title" class="cart-title">Your Cart</h2>
+        <span id="cart-header-count" class="cart-pill-count">0</span>
+      </div>
+      <button type="button" id="btn-close-cart" class="btn-close-cart" aria-label="Close cart">✕</button>
+    </div>
+
+    <!-- Cart Items Scrollable List -->
+    <div id="cart-items-body" class="cart-drawer-body">
+      <!-- Dynamic list or empty state injected by JS -->
+    </div>
+
+    <!-- Cart Drawer Footer (Totals & WhatsApp Action) -->
+    <div id="cart-drawer-footer" class="cart-drawer-footer">
+      <!-- Table / Order Note (Optional) -->
+      <div class="order-note-block">
+        <label for="order-note-input" class="order-note-label" id="label-order-note">Table / Order Note:</label>
+        <input
+          type="text"
+          id="order-note-input"
+          class="order-note-input"
+          placeholder="Table number or special cooking notes (optional)"
+          maxlength="100"
+        >
+      </div>
+
+      <!-- Bill Breakdown -->
+      <div class="bill-summary-card">
+        <div class="bill-row">
+          <span id="label-subtotal">Subtotal</span>
+          <span id="bill-subtotal" class="bill-val">₹0</span>
+        </div>
+        <div class="bill-row tax-row">
+          <span id="label-tax-note">Inclusive of all applicable taxes</span>
+          <span class="bill-val">₹0</span>
+        </div>
+        <div class="bill-row bill-grand-total">
+          <span id="label-grand-total">Grand Total</span>
+          <span id="bill-grand-total" class="bill-val">₹0</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="cart-actions-group">
+        <button type="button" id="btn-clear-cart" class="btn-clear-cart">
+          <span id="label-clear-cart">Clear Cart</span>
+        </button>
+        <button type="button" id="btn-whatsapp-order" class="btn-whatsapp-order">
+          <svg class="whatsapp-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.274.072.376-.043s.433-.506.549-.68c.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/>
+          </svg>
+          <span id="label-whatsapp-cta">Order via WhatsApp</span>
+        </button>
+      </div>
+
+      <!-- Configured WhatsApp Number Indicator -->
+      <div class="whatsapp-config-note">
+        <span>Demo WhatsApp: <strong id="wa-display-number">+91 98765 43210</strong> (Customer sends manually)</span>
+      </div>
+    </div>
+  </aside>
+
   <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container footer-content">
       <p class="footer-note" id="footer-note">Prices are inclusive of applicable taxes. Freshly prepared to order.</p>
-      <p class="footer-copy">© Spice Street • QR Menu Service (Checkpoint 2B Demonstration)</p>
+      <p class="footer-copy">© Spice Street • QR Menu Service (Checkpoint 2C Demonstration)</p>
     </div>
   </footer>
 

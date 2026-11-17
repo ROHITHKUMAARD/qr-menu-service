@@ -510,6 +510,15 @@ const MENU_ITEMS = [
   }
 ];
 
+// Restaurant Configuration (Checkpoint 2C)
+const RESTAURANT_CONFIG = {
+  // Explicitly labeled fictional demonstration number (India country code 91 + 10 digits)
+  whatsappNumber: "919876543210",
+  whatsappNumberFormatted: "+91 98765 43210",
+  currencySymbol: "₹",
+  cartStorageKey: "spice_street_cart_v1"
+};
+
 // UI Localization strings
 const UI_STRINGS = {
   en: {
@@ -528,7 +537,26 @@ const UI_STRINGS = {
     noResultsSubtitle: "Try searching with different keywords or resetting filters.",
     clearFilters: "Reset Filters",
     itemCountSuffix: "items",
-    footerText: "Prices are inclusive of applicable taxes. Freshly prepared to order."
+    footerText: "Prices are inclusive of applicable taxes. Freshly prepared to order.",
+    // Checkpoint 2C Cart & WhatsApp strings
+    addToCart: "Add",
+    addedToCart: "Added",
+    cartTitle: "Your Cart",
+    viewCart: "View Cart",
+    emptyCartTitle: "Your cart is empty",
+    emptyCartSubtitle: "Explore our menu and add your favorite dishes to the cart.",
+    browseMenu: "Browse Menu",
+    clearCart: "Clear Cart",
+    subtotal: "Subtotal",
+    taxesInclusive: "Inclusive of all applicable taxes",
+    grandTotal: "Grand Total",
+    proceedToWhatsApp: "Order via WhatsApp",
+    orderViaWhatsApp: "Order via WhatsApp",
+    tablePrompt: "Table / Order Note",
+    tablePlaceholder: "Table number or special cooking notes (optional)",
+    itemRemoved: "Item removed from cart",
+    soldOutWarning: "This item is currently sold out and cannot be added.",
+    invalidPhoneError: "Unable to open WhatsApp: The configured restaurant number is invalid."
   },
   hi: {
     menuTitle: "हमारा मेन्यू",
@@ -546,7 +574,26 @@ const UI_STRINGS = {
     noResultsSubtitle: "कृपया अन्य शब्दों से खोजें या फ़िल्टर हटाएँ।",
     clearFilters: "फ़िल्टर रीसेट करें",
     itemCountSuffix: "व्यंजन",
-    footerText: "सभी कीमतें लागू कर सहित हैं। ताज़ा और स्वादिष्ट तैयारी।"
+    footerText: "सभी कीमतें लागू कर सहित हैं। ताज़ा और स्वादिष्ट तैयारी।",
+    // Checkpoint 2C Cart & WhatsApp strings
+    addToCart: "जोड़ें",
+    addedToCart: "जुड़ा",
+    cartTitle: "आपकी थाली (कार्ट)",
+    viewCart: "कार्ट देखें",
+    emptyCartTitle: "आपकी थाली खाली है",
+    emptyCartSubtitle: "हमारा मेन्यू देखें और अपने पसंदीदा व्यंजन थाली में जोड़ें।",
+    browseMenu: "मेन्यू देखें",
+    clearCart: "थाली खाली करें",
+    subtotal: "उप-योग",
+    taxesInclusive: "सभी लागू कर शामिल हैं",
+    grandTotal: "कुल योग",
+    proceedToWhatsApp: "व्हाट्सएप पर ऑर्डर करें",
+    orderViaWhatsApp: "व्हाट्सएप द्वारा ऑर्डर भेजें",
+    tablePrompt: "टेबल / विशेष निर्देश",
+    tablePlaceholder: "टेबल नंबर या कोई विशेष निर्देश (वैकल्पिक)",
+    itemRemoved: "व्यंजन थाली से हटा दिया गया",
+    soldOutWarning: "यह व्यंजन वर्तमान में उपलब्ध नहीं है।",
+    invalidPhoneError: "व्हाट्सएप खोलने में असमर्थ: कॉन्फ़िगर किया गया फ़ोन नंबर अमान्य है।"
   }
 };
 
@@ -554,6 +601,7 @@ const UI_STRINGS = {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     RESTAURANT_INFO,
+    RESTAURANT_CONFIG,
     CATEGORIES,
     MENU_ITEMS,
     UI_STRINGS
@@ -563,6 +611,7 @@ if (typeof module !== "undefined" && module.exports) {
 if (typeof window !== "undefined") {
   window.MENU_DATA = {
     RESTAURANT_INFO,
+    RESTAURANT_CONFIG,
     CATEGORIES,
     MENU_ITEMS,
     UI_STRINGS
